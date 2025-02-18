@@ -7,10 +7,22 @@
     "rootDir": "./src",
     "baseUrl": "./src",
     "paths": {
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
       "@shared/*": ["shared/*"],
-      "@services/*": ["services/*"],
-      "@controllers/*": ["controllers/*"]
+      "@errors/*": ["errors/*"],
+      "@utils/*": ["utils/*"]
     },
-    "strict": true
-  }
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "./src"
+  ]
 }

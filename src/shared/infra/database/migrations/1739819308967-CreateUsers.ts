@@ -13,22 +13,7 @@ export class CreateUsers1739819308967 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "name",
-                        type: "varchar",
-                        isNullable: false,
-                    },
-                    {
-                        name: "email",
-                        type: "varchar",
-                        isNullable: true,
-                    },
-                    {
-                        name: "phone",
-                        type: "varchar",
-                        isNullable: true,
-                    },
-                    {
-                        name: "mobile_phone",
+                        name: "login",
                         type: "varchar",
                         isNullable: false,
                     },
@@ -38,25 +23,25 @@ export class CreateUsers1739819308967 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
-                        name: "address",
-                        type: "varchar",
-                        isNullable: false,
-                    },
-                    {
-                        name: "number",
-                        type: "varchar",
-                        isNullable: false,
-                    },
-                    {
-                        name: "complement",
-                        type: "varchar",
-                        isNullable: false,
+                        name: "is_admin",
+                        type: "boolean",
+                        default: false,
                     },
                     {
                         name: "status",
                         type: "boolean",
                         isNullable: false,
                     },
+                    {
+                        name: 'created_at',
+                        type: 'timestamp',
+                        default: 'now()'
+                    },
+                    {
+                        name: 'updated_at',
+                        type: 'timestamp',
+                        default: 'now()'
+                    }
                 ]
             })
         )
