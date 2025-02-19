@@ -8,9 +8,11 @@ export class CreateUsersTokens1739819516000 implements MigrationInterface {
               name: 'user_tokens',
               columns: [
                 {
-                  name: 'id',
-                  type: 'uuid',
+                  name: "id",
+                  type: "uuid",
                   isPrimary: true,
+                  isGenerated: true,
+                  generationStrategy: "uuid",
                 },
                 {
                   name: 'refresh_token',
