@@ -44,6 +44,15 @@ class UserRepository implements IUserRepository {
       await queryRunner.release()
     }
   }
+
+  async findByLogin(login: string): Promise<User> {
+    const user = await this.repository.findOne({ where: { login: login } })
+
+    if (!user) {
+      throw new Error('User not found')
+    }
+    return user
+  }
 }
 
 export { UserRepository }
