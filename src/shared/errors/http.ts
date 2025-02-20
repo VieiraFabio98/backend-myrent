@@ -60,7 +60,7 @@ export class ConflictError extends Error {
     super('Conflict failure')
     this.error = {
       name: 'ConflictError',
-      message: `${type} em uso!`
+      message: `${type}`
     }
   }
 }

@@ -37,27 +37,27 @@ export class CreateLocator1739879652512 implements MigrationInterface {
                             {
                                 name: "mobile_phone",
                                 type: "varchar",
-                                isNullable: false,
+                                isNullable: true,
                             },
                             {
                                 name: "address",
                                 type: "varchar",
-                                isNullable: false,
+                                isNullable: true,
                             },
                             {
                                 name: "number",
                                 type: "varchar",
-                                isNullable: false,
+                                isNullable: true,
                             },
                             {
                                 name: "complement",
                                 type: "varchar",
-                                isNullable: false,
+                                isNullable: true,
                             },
                             {
                                 name: "status",
                                 type: "boolean",
-                                isNullable: false,
+                                isNullable: true,
                             },
                             {
                                 name: 'created_at',

@@ -49,3 +49,8 @@ export const sendMailFailure = (): HttpResponse<Error> => ({
   statusCode: 502,
   data: (new SendMailError()).error
 })
+
+export const unprocessableEntity = (type: string): HttpResponse<Error> => ({
+  statusCode: 422,
+  data: (new ConflictError(type)).error
+})

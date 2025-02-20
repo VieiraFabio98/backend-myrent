@@ -3,7 +3,7 @@ import { IUserRepository } from "@modules/authentication/repositories/i-user-rep
 import { inject, injectable } from "tsyringe";
 import { hash } from 'bcrypt'
 import { User } from "@modules/authentication/infra/entities/user";
-import { HttpResponse } from "@shared/helpers";
+import { HttpResponse, unprocessableEntity } from "@shared/helpers";
 
 interface IRequest {
   login: string
@@ -25,6 +25,11 @@ class CreateUserUseCase {
     isAdmin,
     status
   }: IRequest): Promise<User> {
+
+    const userAlreadyExists = await this.userRepository.findByLogin(login)
+    if(userAlreadyExists) {
+      throw unprocessableEntity('User already exists')
+    }
 
     const passwordHash = await hash(password, 8)
 
