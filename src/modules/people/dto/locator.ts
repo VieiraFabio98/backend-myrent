@@ -1,0 +1,14 @@
+interface ILocatorDTO {
+  id: string
+  userId: string
+  name: string
+  email?: string
+  phone?: string
+  mobilePhone?: string
+  address?: string
+  number?: string
+  complement?: string
+  status: boolean
+}
+
+export { ILocatorDTO }
