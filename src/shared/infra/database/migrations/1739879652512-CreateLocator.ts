@@ -24,11 +24,11 @@ export class CreateLocator1739879652512 implements MigrationInterface {
                                 type: "varchar",
                                 isNullable: false,
                             },
-                            {
-                                name: "email",
-                                type: "varchar",
-                                isNullable: true,
-                            },
+                            // {
+                            //     name: "email",
+                            //     type: "varchar",
+                            //     isNullable: true,
+                            // },
                             {
                                 name: "phone",
                                 type: "varchar",

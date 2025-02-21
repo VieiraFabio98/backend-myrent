@@ -6,26 +6,24 @@ class Locator {
   @PrimaryGeneratedColumn("uuid")
   id: string
 
-  @ManyToOne(() => User, { nullable: true, eager: true })
+  @ManyToOne(() => User, { nullable: false, eager: true })
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   userId: string
 
   @Column("varchar", { name: "name", nullable: false })
   name: string
 
-  @Column("varchar", { name: "email", nullable: false })
-  email?: string
 
-  @Column("string", { name: "phone", nullable: false })
+  @Column("varchar", { name: "phone", nullable: true })
   phone?: string
 
-  @Column("string", { name: "mobile_phone", nullable: false })
+  @Column("varchar", { name: "mobile_phone", nullable: true })
   mobilePhone?: string
 
-  @Column("string", { name: "address", nullable: false })
+  @Column("varchar", { name: "address", nullable: true })
   address?: string
 
-  @Column("string", { name: "complement", nullable: false })
+  @Column("varchar", { name: "complement", nullable: true })
   complement?: string
 
   @Column("boolean", { name: "status", nullable: false })

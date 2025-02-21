@@ -1,5 +1,5 @@
 interface ILocatorDTO {
-  id: string
+  id?: string
   userId: string
   name: string
   email?: string

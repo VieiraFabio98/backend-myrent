@@ -1,29 +1,26 @@
-import { Request, Response } from 'express'
+import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { CreateUserUseCase } from "./create-user-use-case";
+import { CreateUserUseCase } from "./create-locator-use-case";
 
-class CreateUserController {
+
+class CreateLocatorController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { 
-      login, 
-      password, 
-      isAdmin,
-      name,
-      email,
-      phone,
-      mobilePhone,
-      address,
-      number,
-      complement,
+      userId, 
+      name, 
+      email, 
+      phone, 
+      mobilePhone, 
+      address, 
+      number, 
+      complement, 
       status 
     } = request.body
 
     const createUserUseCase = container.resolve(CreateUserUseCase)
 
     const result = await createUserUseCase.execute({
-      login, 
-      password, 
-      isAdmin,
+      userId,
       name,
       email,
       phone,
@@ -31,11 +28,10 @@ class CreateUserController {
       address,
       number,
       complement,
-      status 
-    }).then(userResult => {
-      return userResult
-    })
-    .catch(error => {
+      status
+    }).then(locatorResult => {
+      return locatorResult
+    }).catch(error => {
       return error
     })
 
@@ -43,4 +39,4 @@ class CreateUserController {
   }
 }
 
-export { CreateUserController }
+export { CreateLocatorController }
