@@ -4,6 +4,7 @@ import { HttpResponse, serverError, ok } from "@shared/helpers";
 import { Locator } from "@modules/people/infra/entities/locator";
 import { Repository } from "typeorm";
 import AppDataSource from "@shared/infra/database/data-source";
+import { QueryRunner } from "typeorm/browser";
 
 
 class LocatorRepository implements ILocatorRepository {
@@ -12,21 +13,20 @@ class LocatorRepository implements ILocatorRepository {
   constructor() {
     this.repository = AppDataSource.getRepository(Locator)
   }
+  
   async create({
     userId,
     name,
-    email,
     phone,
     mobilePhone,
     address,
     complement,
     status
-  }: ILocatorDTO): Promise<HttpResponse> {
+  }: ILocatorDTO, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
       const locator = this.repository.create({
         userId,
         name,
-        email,
         phone,
         mobilePhone,
         address,
@@ -34,11 +34,21 @@ class LocatorRepository implements ILocatorRepository {
         status
       })
 
-      const result = await this.repository.save(locator)
+      const result = await queryRunner.manager.save(locator)
 
       return ok(result)
 
     } catch (err) {
+      throw serverError(err as Error)
+    }
+  }
+
+  async get(id: string): Promise<HttpResponse> {
+    try {
+      const locator = await this.repository.findOne({ where: { id: id }})
+
+      return ok(locator)
+    } catch(err) {
       throw serverError(err as Error)
     }
   }

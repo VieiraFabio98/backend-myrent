@@ -20,10 +20,6 @@ class UserRepository implements IUserRepository {
     status
   }: IUserDTO): Promise<HttpResponse> {
 
-    const queryRunner = AppDataSource.createQueryRunner()
-    await queryRunner.connect()
-    await queryRunner.startTransaction()
-
     try {
       const user = this.repository.create({
         login,
@@ -32,17 +28,13 @@ class UserRepository implements IUserRepository {
         status
       })
 
-      const result = await queryRunner.manager.save(user)
-      await queryRunner.commitTransaction()
+      const result = await this.repository.save(user)
 
       return ok(result)
 
     } catch(error){
-      await queryRunner.rollbackTransaction()
       return serverError(error as Error)
-    } finally {
-      await queryRunner.release()
-    }
+    } 
   }
 
   async findByLogin(login: string): Promise<User> {
