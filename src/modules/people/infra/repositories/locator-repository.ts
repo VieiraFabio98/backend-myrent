@@ -1,6 +1,6 @@
 import { ILocatorDTO } from "@modules/people/dto/locator";
 import { ILocatorRepository } from "@modules/people/repositories/i-locator-repository";
-import { HttpResponse, serverError, ok } from "@shared/helpers";
+import { HttpResponse, serverError, ok, noContent } from "@shared/helpers";
 import { Locator } from "@modules/people/infra/entities/locator";
 import { Repository } from "typeorm";
 import AppDataSource from "@shared/infra/database/data-source";
@@ -46,6 +46,10 @@ class LocatorRepository implements ILocatorRepository {
   async get(id: string): Promise<HttpResponse> {
     try {
       const locator = await this.repository.findOne({ where: { id: id }})
+  
+      if(!locator) {
+        return noContent()
+      }
 
       return ok(locator)
     } catch(err) {
