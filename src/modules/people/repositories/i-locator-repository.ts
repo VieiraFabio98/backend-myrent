@@ -8,6 +8,10 @@ interface ILocatorRepository {
 
   get(id: string): Promise<HttpResponse>
 
+  update(data: ILocatorDTO): Promise<HttpResponse>
+
+  delete(id: string): Promise<HttpResponse>
+
 }
 
 export { ILocatorRepository }
