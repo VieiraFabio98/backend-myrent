@@ -1,6 +1,8 @@
+import { User } from "@modules/authentication/infra/entities/user"
+
 interface ILocatorDTO {
   id?: string
-  userId: string
+  userId?: string
   name: string
   email?: string
   phone?: string

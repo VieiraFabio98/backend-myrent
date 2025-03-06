@@ -76,8 +76,8 @@ export class CreateLocator1739879652512 implements MigrationInterface {
                                 referencedTableName: 'users',
                                 referencedColumnNames: ['id'],
                                 columnNames: ['user_id'],
-                                onDelete: 'SET NULL',
-                                onUpdate: 'SET NULL',
+                                onDelete: 'CASCADE',
+                                onUpdate: 'CASCADE',
                             }
                         ]
                     })

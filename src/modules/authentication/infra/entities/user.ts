@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { Locator } from "@modules/people/infra/entities/locator"
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn } from "typeorm"
 
 @Entity("users")
 class User {
@@ -22,6 +23,14 @@ class User {
 
   @UpdateDateColumn({ name: "updated_at", type: "timestamp" })
   updatedAt: Date
+
+  // @OneToOne(() => Locator, locator => locator.userId, { 
+  //   onDelete: 'CASCADE', 
+  //   eager: true 
+  // })
+  // @JoinColumn({ name: "locator_id" }) // Define explicitamente a FK no User
+  // locator: Locator
+
 }
 
 export { User }

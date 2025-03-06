@@ -56,6 +56,46 @@ class LocatorRepository implements ILocatorRepository {
       throw serverError(err as Error)
     }
   }
+
+  async update({
+    id,
+    name,
+    phone,
+    mobilePhone,
+    address,
+    complement,
+    status
+  }: ILocatorDTO): Promise<HttpResponse> {
+    try {
+      const locator = this.repository.create({
+        id,
+        name,
+        phone,
+        mobilePhone,
+        address,
+        complement,
+        status
+      })
+
+      const result = await this.repository.save(locator)
+
+      return ok(result)
+
+    } catch (err) {
+      throw serverError(err as Error)
+    }
+  }
+
+  async delete(id: string): Promise<HttpResponse> {
+    try {
+      const result = await this.repository.delete(id)
+
+      return ok(result)
+
+    } catch (err) {
+      throw serverError(err as Error)
+    }
+  }
   
 }
 

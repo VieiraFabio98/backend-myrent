@@ -1,5 +1,5 @@
 import { User } from "@modules/authentication/infra/entities/user"
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToOne } from "typeorm"
 
 @Entity("locators")
 class Locator {
@@ -12,7 +12,6 @@ class Locator {
 
   @Column("varchar", { name: "name", nullable: false })
   name: string
-
 
   @Column("varchar", { name: "phone", nullable: true })
   phone?: string
