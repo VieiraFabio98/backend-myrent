@@ -85,6 +85,7 @@ class CreateUserUseCase {
 
       return result
     } catch(err){
+      console.log(err)
       await queryRunner.rollbackTransaction()
       throw serverError(err as Error)
     } finally {
