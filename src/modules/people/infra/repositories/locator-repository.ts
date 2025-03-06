@@ -39,6 +39,7 @@ class LocatorRepository implements ILocatorRepository {
       return ok(result)
 
     } catch (err) {
+      console.log(err)
       throw serverError(err as Error)
     }
   }

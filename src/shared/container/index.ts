@@ -6,7 +6,10 @@ import { container } from "tsyringe"
 import '@shared/container/providers'
 import { ILocatorRepository } from "@modules/people/repositories/i-locator-repository"
 import { LocatorRepository } from "@modules/people/infra/repositories/locator-repository"
+import { IRenterRepository } from "@modules/people/repositories/i-renter-repository"
+import { RenterRepository } from "@modules/people/infra/repositories/renter-repository"
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository)
 container.registerSingleton<IUserTokenRepository>("UserTokenRepository", UserTokenRepository)
 container.registerSingleton<ILocatorRepository>("LocatorRepository", LocatorRepository)
+container.registerSingleton<IRenterRepository>("RenterRepository", RenterRepository)

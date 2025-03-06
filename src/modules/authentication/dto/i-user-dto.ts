@@ -4,6 +4,8 @@ interface IUserDTO {
   password: string
   isAdmin: boolean
   status: boolean
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export { IUserDTO }
