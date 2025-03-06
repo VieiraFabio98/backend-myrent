@@ -6,6 +6,8 @@ interface IUserRepository {
   create(data: IUserDTO): Promise<HttpResponse>
 
   findByLogin(login: string): Promise<User>
+
+  delete(id: string): Promise<void>
 }
 
 export { IUserRepository }

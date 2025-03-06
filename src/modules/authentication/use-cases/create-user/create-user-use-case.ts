@@ -1,7 +1,6 @@
 import { IUserRepository } from "@modules/authentication/repositories/i-user-repository";
 import { inject, injectable } from "tsyringe";
 import { hash } from 'bcrypt'
-import { User } from "@modules/authentication/infra/entities/user";
 import { ILocatorRepository } from "@modules/people/repositories/i-locator-repository";
 import AppDataSource from "@shared/infra/database/data-source";
 import { HttpResponse, serverError } from "@shared/helpers";
