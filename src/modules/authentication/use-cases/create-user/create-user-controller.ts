@@ -23,7 +23,7 @@ class CreateUserController {
     const result = await createUserUseCase.execute({
       login, 
       password, 
-      isAdmin,
+      isAdmin: false,
       name,
       email,
       phone,
@@ -31,7 +31,7 @@ class CreateUserController {
       address,
       number,
       complement,
-      status 
+      status: true 
     }).then(userResult => {
       return userResult
     })
