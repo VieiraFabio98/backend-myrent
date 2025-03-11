@@ -1,7 +1,7 @@
 import { IUserDTO } from "@modules/authentication/dto/i-user-dto";
 import { IUserRepository } from "@modules/authentication/repositories/i-user-repository";
 import { HttpResponse, ok, serverError } from "@shared/helpers";
-import { Repository } from "typeorm";
+import { QueryRunner, Repository } from "typeorm";
 import AppDataSource from "@shared/infra/database/data-source";
 import { User } from "@modules/authentication/infra/entities/user";
 
@@ -18,7 +18,7 @@ class UserRepository implements IUserRepository {
     password,
     isAdmin,
     status
-  }: IUserDTO): Promise<HttpResponse> {
+  }: IUserDTO, queryRunner: QueryRunner): Promise<HttpResponse> {
 
     try {
       const user = this.repository.create({
@@ -28,7 +28,7 @@ class UserRepository implements IUserRepository {
         status
       })
 
-      const result = await this.repository.save(user)
+      const result = await queryRunner.manager.save(user)
 
       return ok(result)
 

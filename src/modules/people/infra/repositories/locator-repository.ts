@@ -33,7 +33,6 @@ class LocatorRepository implements ILocatorRepository {
         complement,
         status
       })
-
       const result = await queryRunner.manager.save(locator)
 
       return ok(result)

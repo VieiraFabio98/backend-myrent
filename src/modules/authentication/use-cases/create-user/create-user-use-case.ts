@@ -60,7 +60,7 @@ class CreateUserUseCase {
         password: passwordHash,
         isAdmin,
         status
-      }).then(userResult => {
+      }, queryRunner).then(userResult => {
         return userResult
       })
       .catch(error => {
