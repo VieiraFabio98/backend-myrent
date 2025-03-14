@@ -28,8 +28,6 @@ class UserTokenRepository implements IUserTokenRepository {
         refreshToken,
         userId,
       })
-
-      console.log(userToken)
   
       await queryRunner.manager.save(userToken)
       await queryRunner.commitTransaction()

@@ -5,6 +5,7 @@ import auth from '@config/auth'
 import { sign } from 'jsonwebtoken'
 import { IDateProvider } from "@shared/container/providers/date-provider/i-date-provider";
 import { IUserTokenRepository } from "@modules/authentication/repositories/i-user-token-repository";
+import { ILocatorRepository } from "@modules/people/repositories/i-locator-repository";
 
 interface IRequest {
   login: string
@@ -14,6 +15,7 @@ interface IRequest {
 interface IResponse {
   user: {
     login: string
+    locatorId?: string
   }
   token: string
   refreshToken: string
@@ -27,7 +29,9 @@ class AuthenticateUserUseCase {
     @inject('DayjsDateProvider')
     private dateProvider: IDateProvider,
     @inject('UserTokenRepository')
-    private userTokenRepository: IUserTokenRepository
+    private userTokenRepository: IUserTokenRepository,
+    @inject('LocatorRepository')
+    private locatorRepository: ILocatorRepository
   ){}
 
   async execute({ login, password }: IRequest): Promise<IResponse> {
@@ -69,9 +73,12 @@ class AuthenticateUserUseCase {
       expiresDate: refreshTokenExpiresDate
     })
 
+    const locator = await this.locatorRepository.findByUserId(user.id)
+
     const tokenReturn: IResponse = {
       user: {
         login: user.login,
+        locatorId: locator.id
       },
       token,
       refreshToken

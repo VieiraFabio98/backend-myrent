@@ -96,6 +96,24 @@ class LocatorRepository implements ILocatorRepository {
       throw serverError(err as Error)
     }
   }
+
+  //investigar motivo de this.repository.findOne retornar [object object]
+  async findByUserId(userId: string): Promise<Locator> {
+    try {
+      const locator = await this.repository.createQueryBuilder('loc')
+        .select('loc.id as "id"')
+        .where('loc.userId = :userId', { userId })
+        .getRawOne()
+
+      if (!locator) {
+        throw serverError(new Error("Locator not found"))
+      }
+
+      return locator
+    } catch(err){
+      throw serverError(err as Error)
+    }
+  }
   
 }
 

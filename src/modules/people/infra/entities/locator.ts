@@ -6,7 +6,7 @@ class Locator {
   @PrimaryGeneratedColumn("uuid")
   id: string
 
-  @ManyToOne(() => User, { nullable: false, eager: true })
+  @OneToOne(() => User, { nullable: false, eager: true })
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   userId: string
 
