@@ -9,6 +9,8 @@ interface IRenterRepository {
   get(id: string): Promise<HttpResponse>
 
   delete(id: string): Promise<HttpResponse>
+
+  listByLocatorId(id: string): Promise<HttpResponse>
 }
 
 export { IRenterRepository}

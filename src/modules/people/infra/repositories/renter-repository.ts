@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { Brackets, Repository } from "typeorm";
 import { Renter } from "../entities/renters";
 import AppDataSource from "@shared/infra/database/data-source"
 import { IRenterRepository } from "@modules/people/repositories/i-renter-repository";
@@ -104,6 +104,59 @@ class RenterRepository implements IRenterRepository {
       return ok(result)
     } catch(err) {
       throw serverError(err as Error)
+    }
+  }
+
+  async listByLocatorId (
+    search: string,
+    page: number,
+    rowsPerPage: number,
+    order: string,
+    filter: string
+  ): Promise<HttpResponse> {
+    let columnName: string
+    let columnDirection: 'ASC' | 'DESC'
+
+    if ((typeof(order) === 'undefined') || (order === "")) {
+      columnName = 'nome'
+      columnDirection = 'ASC'
+    } else {
+      columnName = order.substring(0, 1) === '-' ? order.substring(1) : order
+      columnDirection = order.substring(0, 1) === '-' ? 'DESC' : 'ASC'
+    }
+
+    const referenceArray = []
+    const columnOrder = new Array<'ASC' | 'DESC'>(2).fill('ASC')
+
+    const index = referenceArray.indexOf(columnName)
+
+    columnOrder[index] = columnDirection
+
+    const offset = rowsPerPage * page
+
+    try {
+      let query = this.repository.createQueryBuilder('pho')
+        .select([
+          'pho.id as "id"',
+        ])
+
+      if (filter) {
+        query = query
+          .where(filter)
+      }
+
+      const photographers = await query
+        .andWhere(new Brackets(query => {
+          query.andWhere('CAST(pho. AS VARCHAR) ilike :search', { search: `%${search}%` })
+        }))
+        .offset(offset)
+        .limit(rowsPerPage)
+        .take(rowsPerPage)
+        .getRawMany()
+
+      return ok(photographers)
+    } catch (err) {
+      return serverError(err as Error)
     }
   }
 }
