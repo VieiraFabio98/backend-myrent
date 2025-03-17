@@ -112,20 +112,20 @@ class RenterRepository implements IRenterRepository {
     page: number,
     rowsPerPage: number,
     order: string,
-    filter: string
+    filter?: string
   ): Promise<HttpResponse> {
     let columnName: string
     let columnDirection: 'ASC' | 'DESC'
 
     if ((typeof(order) === 'undefined') || (order === "")) {
-      columnName = 'nome'
+      columnName = 'name'
       columnDirection = 'ASC'
     } else {
       columnName = order.substring(0, 1) === '-' ? order.substring(1) : order
       columnDirection = order.substring(0, 1) === '-' ? 'DESC' : 'ASC'
     }
 
-    const referenceArray = []
+    const referenceArray: string | string[] = []
     const columnOrder = new Array<'ASC' | 'DESC'>(2).fill('ASC')
 
     const index = referenceArray.indexOf(columnName)
@@ -133,11 +133,15 @@ class RenterRepository implements IRenterRepository {
     columnOrder[index] = columnDirection
 
     const offset = rowsPerPage * page
-
+    
     try {
-      let query = this.repository.createQueryBuilder('pho')
+      let query = this.repository.createQueryBuilder('ren')
         .select([
-          'pho.id as "id"',
+          'ren.id as "id"',
+          'ren.name as "name"',
+          'ren.email as "email"',
+          'ren.phone as "phone"',
+          'ren.mobile_phone as "mobilePhone"',
         ])
 
       if (filter) {
@@ -145,16 +149,43 @@ class RenterRepository implements IRenterRepository {
           .where(filter)
       }
 
-      const photographers = await query
+      const renters = await query
         .andWhere(new Brackets(query => {
-          query.andWhere('CAST(pho. AS VARCHAR) ilike :search', { search: `%${search}%` })
+          query.andWhere('CAST(ren.name AS VARCHAR) ilike :search', { search: `%${search}%` })
         }))
         .offset(offset)
         .limit(rowsPerPage)
         .take(rowsPerPage)
         .getRawMany()
 
-      return ok(photographers)
+      return ok(renters)
+    } catch (err) {
+      return serverError(err as Error)
+    }
+  }
+
+  async count (
+    search: string,
+    filter?: string
+  ): Promise<HttpResponse> {
+    try {
+      let query = this.repository.createQueryBuilder('ren')
+        .select([
+          'ren.id as "id"',
+        ])
+
+      if (filter) {
+        query = query
+          .where(filter)
+      }
+
+      const renters = await query
+        .andWhere(new Brackets(query => {
+          query.andWhere('CAST(ren.name AS VARCHAR) ilike :search', { search: `%${search}%` })
+        }))
+        .getRawMany()
+
+      return ok({ count: renters.length })
     } catch (err) {
       return serverError(err as Error)
     }

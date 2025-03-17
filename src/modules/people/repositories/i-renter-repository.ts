@@ -10,7 +10,15 @@ interface IRenterRepository {
 
   delete(id: string): Promise<HttpResponse>
 
-  listByLocatorId(id: string): Promise<HttpResponse>
+  listByLocatorId (
+    search: string,
+    page: number,
+    rowsPerPage: number,
+    order: string,
+    filter?: string
+  ): Promise<HttpResponse>
+
+  count (search: string, filter?: string): Promise<HttpResponse>
 }
 
 export { IRenterRepository}
