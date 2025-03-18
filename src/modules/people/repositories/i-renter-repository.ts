@@ -11,11 +11,12 @@ interface IRenterRepository {
   delete(id: string): Promise<HttpResponse>
 
   listByLocatorId (
+    locatorId: string,
     search: string,
     page: number,
     rowsPerPage: number,
     order: string,
-    filter?: string
+    filter?: string,
   ): Promise<HttpResponse>
 
   count (search: string, filter?: string): Promise<HttpResponse>

@@ -13,6 +13,8 @@ class ListRenterController {
       filter
     } = request.body
 
+    const locatorId = request.params.locatorId as string;
+
     const listRenterUseCase = container.resolve(ListRenterUseCase)
 
     const renters = await listRenterUseCase.execute({
@@ -20,7 +22,8 @@ class ListRenterController {
       page: Number(page) as number,
       rowsPerPage: Number(pageSize) as number,
       order: order as string,
-      filter: filter as string
+      filter: filter as string,
+      locatorId: locatorId
     })
 
     return response.json(renters)

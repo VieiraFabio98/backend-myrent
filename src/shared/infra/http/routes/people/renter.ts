@@ -13,7 +13,7 @@ const deleteRenterController = new DeleteRenterController()
 const listRenterController = new ListRenterController()
 
 renterRoutes.post('/', createRenterController.handle)
-renterRoutes.post('/list', listRenterController.handle)
+renterRoutes.post('/list/:locatorId', listRenterController.handle)
 renterRoutes.put('/:id', updateRenterController.handle)
 renterRoutes.get('/:id', getRenterController.handle)
 renterRoutes.delete('/:id', deleteRenterController.handle)

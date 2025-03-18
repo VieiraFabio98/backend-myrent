@@ -108,6 +108,7 @@ class RenterRepository implements IRenterRepository {
   }
 
   async listByLocatorId (
+    locatorId: string,
     search: string,
     page: number,
     rowsPerPage: number,
@@ -143,10 +144,11 @@ class RenterRepository implements IRenterRepository {
           'ren.phone as "phone"',
           'ren.mobile_phone as "mobilePhone"',
         ])
+        .where('ren.locator_id = :locatorId', { locatorId: locatorId })
 
       if (filter) {
         query = query
-          .where(filter)
+          .andWhere(filter)
       }
 
       const renters = await query

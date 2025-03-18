@@ -7,7 +7,8 @@ interface IRequest {
   page: number,
   rowsPerPage: number,
   order: string,
-  filter?: string
+  filter?: string,
+  locatorId: string
 }
 
 interface IResponse {
@@ -23,20 +24,22 @@ class ListRenterUseCase {
   ){}
 
   async execute({
+    locatorId,
     search = '',
     page = 0,
     rowsPerPage = 10,
     order = '',
-    filter
+    filter, 
   }: IRequest): Promise<IResponse>{
     const newPage = page !== 0 ? page - 1 : 0
 
     const renters = await this.renterRepository.listByLocatorId(
+      locatorId,
       search,
       newPage,
       rowsPerPage,
       order,
-      filter
+      filter,
     )
 
     const countRenters = await this.renterRepository.count(search, filter)
