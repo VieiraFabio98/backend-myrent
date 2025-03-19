@@ -158,6 +158,7 @@ class RenterRepository implements IRenterRepository {
         .offset(offset)
         .limit(rowsPerPage)
         .take(rowsPerPage)
+        .orderBy('ren.name', 'ASC')
         .getRawMany()
 
       return ok(renters)
