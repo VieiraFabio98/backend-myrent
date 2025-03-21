@@ -1,9 +1,9 @@
-import { ILocatorDTO } from "@modules/people/dto/locator";
-import { ILocatorRepository } from "@modules/people/repositories/i-locator-repository";
-import { HttpResponse, serverError, ok, noContent } from "@shared/helpers";
-import { Locator } from "@modules/people/infra/entities/locator";
+import { ILocatorDTO } from "@modules/people/dto/locator"
+import { ILocatorRepository } from "@modules/people/repositories/i-locator-repository"
+import { HttpResponse, serverError, ok, noContent } from "@shared/helpers"
+import { Locator } from "@modules/people/infra/entities/locator"
 import { Repository } from "typeorm";
-import AppDataSource from "@shared/infra/database/data-source";
+import AppDataSource from "@shared/infra/database/data-source"
 import { QueryRunner } from "typeorm/browser";
 
 

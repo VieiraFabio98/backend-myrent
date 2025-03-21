@@ -8,8 +8,11 @@ import { ILocatorRepository } from "@modules/people/repositories/i-locator-repos
 import { LocatorRepository } from "@modules/people/infra/repositories/locator-repository"
 import { IRenterRepository } from "@modules/people/repositories/i-renter-repository"
 import { RenterRepository } from "@modules/people/infra/repositories/renter-repository"
+import { IStateRepository } from "@modules/comum/repositories/i-state-repository"
+import { StateRepository } from "@modules/comum/infra/repositories/state-repository"
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository)
 container.registerSingleton<IUserTokenRepository>("UserTokenRepository", UserTokenRepository)
 container.registerSingleton<ILocatorRepository>("LocatorRepository", LocatorRepository)
 container.registerSingleton<IRenterRepository>("RenterRepository", RenterRepository)
+container.registerSingleton<IStateRepository>("StateRepository", StateRepository)
