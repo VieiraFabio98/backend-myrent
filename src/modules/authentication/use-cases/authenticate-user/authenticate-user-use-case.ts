@@ -48,9 +48,7 @@ class AuthenticateUserUseCase {
       throw new Error("Email ou senha incorretos")
     }
 
-    const decodedPassword = atob(password)
-
-    const passwordMatch = await compare(decodedPassword, user.password)
+    const passwordMatch = await compare(password, user.password)
     if(!passwordMatch) {
       throw new Error("Email ou senha incorretos")
     }
