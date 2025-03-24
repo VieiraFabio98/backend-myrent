@@ -21,7 +21,7 @@ class StateRepository implements IStateRepository {
           'sta.id as "id"',
           'sta.codigoIbge as "codigoIbge"',
           'sta.uf as "uf"',
-          'sta.nomeEstado as "nomeEstado"',
+          'sta.nomeEstado as "nome"',
         ])
         .orderBy('sta.nomeEstado')
         .getRawMany()

@@ -10,9 +10,12 @@ import { IRenterRepository } from "@modules/people/repositories/i-renter-reposit
 import { RenterRepository } from "@modules/people/infra/repositories/renter-repository"
 import { IStateRepository } from "@modules/comum/repositories/i-state-repository"
 import { StateRepository } from "@modules/comum/infra/repositories/state-repository"
+import { ICityRepository } from "@modules/comum/repositories/i-city-repository"
+import { CityRepository } from "@modules/comum/infra/repositories/city-repository"
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository)
 container.registerSingleton<IUserTokenRepository>("UserTokenRepository", UserTokenRepository)
 container.registerSingleton<ILocatorRepository>("LocatorRepository", LocatorRepository)
 container.registerSingleton<IRenterRepository>("RenterRepository", RenterRepository)
 container.registerSingleton<IStateRepository>("StateRepository", StateRepository)
+container.registerSingleton<ICityRepository>("CityRepository", CityRepository)
