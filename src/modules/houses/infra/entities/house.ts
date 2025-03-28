@@ -49,7 +49,7 @@ class House {
   @Column("decimal", { name: "condo_value", nullable: false })
   condoValue: number
 
-  @Column("string", { name: "status", nullable: false })
+  @Column("varchar", { name: "status", nullable: false })
   status: string
 
   @Column("varchar", { name: "description", nullable: true })
