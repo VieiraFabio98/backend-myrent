@@ -1,4 +1,4 @@
-import { Brackets, Repository } from "typeorm";
+import { Brackets, QueryRunner, Repository } from "typeorm";
 import { Renter } from "../entities/renters";
 import AppDataSource from "@shared/infra/database/data-source"
 import { IRenterRepository } from "@modules/people/repositories/i-renter-repository";
@@ -20,7 +20,7 @@ class RenterRepository implements IRenterRepository {
     phone,
     mobilePhone,
     status
-  }: IRenterDTO): Promise<HttpResponse> {
+  }: IRenterDTO, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
       const renter = this.repository.create({
         locatorId,
@@ -31,7 +31,7 @@ class RenterRepository implements IRenterRepository {
         status
       })
     
-      const result = await this.repository.save(renter)
+      const result = await queryRunner.manager.save(renter)
     
       return ok(result)
     
@@ -82,8 +82,6 @@ class RenterRepository implements IRenterRepository {
       if (!renter) {
         return notFound()
       }
-
-      console.log(renter)
 
       return ok(renter)
     } catch(err) {

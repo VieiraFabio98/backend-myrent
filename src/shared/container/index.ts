@@ -12,6 +12,8 @@ import { IStateRepository } from "@modules/comum/repositories/i-state-repository
 import { StateRepository } from "@modules/comum/infra/repositories/state-repository"
 import { ICityRepository } from "@modules/comum/repositories/i-city-repository"
 import { CityRepository } from "@modules/comum/infra/repositories/city-repository"
+import { IHouseRepository } from "@modules/houses/repositories/i-house-repository"
+import { HouseRepository } from "@modules/houses/infra/repositories/house-repository"
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository)
 container.registerSingleton<IUserTokenRepository>("UserTokenRepository", UserTokenRepository)
@@ -19,3 +21,4 @@ container.registerSingleton<ILocatorRepository>("LocatorRepository", LocatorRepo
 container.registerSingleton<IRenterRepository>("RenterRepository", RenterRepository)
 container.registerSingleton<IStateRepository>("StateRepository", StateRepository)
 container.registerSingleton<ICityRepository>("CityRepository", CityRepository)
+container.registerSingleton<IHouseRepository>("HouseRepository", HouseRepository)

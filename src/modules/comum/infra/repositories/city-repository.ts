@@ -14,7 +14,6 @@ class CityRepository implements ICityRepository {
   }
 
   async getAllByStateId(id: string): Promise<HttpResponse> {
-    console.log(id)
     try {
       const city = await this.repository.createQueryBuilder('cit')
         .select([
@@ -25,7 +24,6 @@ class CityRepository implements ICityRepository {
         .where('cit.estadoId = :id', { id })
         .orderBy('cit.nomeCidade')
         .getRawMany()
-      console.log(city)
       return ok(city)
     } catch(err){
       return serverError(err as Error)

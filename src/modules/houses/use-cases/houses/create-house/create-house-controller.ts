@@ -6,7 +6,6 @@ class CreateHouseController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { 
       locatorId, 
-      name, 
       address, 
       complement, 
       stateId, 
@@ -29,26 +28,24 @@ class CreateHouseController {
     
     const result = await createHouseUseCase.execute({
       locatorId,
-      name,
       address,
       complement,
       stateId,
       cityId,
-        zipCode,
-        type,
-        totalArea,
-        usefulArea,
-        rooms,
-        bathrooms,
-        parkingSpaces,
-        rentValue,
-        condoValue,
-        status,
-        description
-      })
+      zipCode,
+      type,
+      totalArea,
+      usefulArea,
+      rooms,
+      bathrooms,
+      parkingSpaces,
+      rentValue,
+      condoValue,
+      status,
+      description
+    })
 
-      return response.status(201).json(result);
-    
+    return response.status(201).json(result);
   }
 }
 

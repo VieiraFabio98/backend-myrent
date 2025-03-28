@@ -39,13 +39,9 @@ class CreateRenterUseCase {
         phone,
         mobilePhone,
         status
-      }).then(renterResult => {
-        return renterResult
-      })
-      .catch(error => {
-        return error
-      })
+      }, queryRunner)
 
+      await queryRunner.commitTransaction()
       return result
 
     } catch(err) {

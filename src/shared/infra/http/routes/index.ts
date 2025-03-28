@@ -5,6 +5,7 @@ import { locatorRoutes } from "./people/locator"
 import { renterRoutes } from "./people/renter"
 import { stateRoutes } from "./comum/state-routes"
 import { cityRoutes } from "./comum/city-routes"
+import { housesRoutes } from "./houses/houses-routes"
 
 const router = Router()
 
@@ -14,6 +15,7 @@ router.use("/locators", locatorRoutes)
 router.use("/renters", renterRoutes)
 router.use("/state", stateRoutes)
 router.use("/city", cityRoutes)
+router.use("/houses", housesRoutes)
 
 
 export { router }

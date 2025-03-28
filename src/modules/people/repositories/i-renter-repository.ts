@@ -1,8 +1,9 @@
 import { HttpResponse } from "@shared/helpers";
 import { IRenterDTO } from "../dto/renter";
+import { QueryRunner } from "typeorm";
 
 interface IRenterRepository {
-  create(data: IRenterDTO): Promise<HttpResponse>
+  create(data: IRenterDTO, queryRunner: QueryRunner): Promise<HttpResponse>
 
   update(data: IRenterDTO): Promise<HttpResponse>
 

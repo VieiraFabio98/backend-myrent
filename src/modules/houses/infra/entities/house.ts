@@ -10,7 +10,7 @@ class House {
   @JoinColumn({ name: 'locator_id', referencedColumnName: 'id' })
   locatorId: string
 
-  @Column("varchar", { name: "name", nullable: false })
+  @Column("varchar", { name: "address", nullable: false })
   address: string
 
   @Column("varchar", { name: "complement", nullable: true })
