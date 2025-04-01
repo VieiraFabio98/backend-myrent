@@ -5,7 +5,6 @@ import { GetCityUseCase } from './get-state-use-case'
 class GetCityController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params
-    console.log(id)
     const getCityUseCase = container.resolve(GetCityUseCase)
     const estado = await getCityUseCase.execute(id)
 
