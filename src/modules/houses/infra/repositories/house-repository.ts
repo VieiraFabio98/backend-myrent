@@ -93,6 +93,8 @@ class HouseRepository implements IHouseRepository {
           .select([
             'hou.id as "id"',
             'hou.address as "address"',
+            'hou.type as "type"',
+            'hou.status as "status"',
           ])
           .where('hou.locator_id = :locatorId', { locatorId: locatorId })
   
